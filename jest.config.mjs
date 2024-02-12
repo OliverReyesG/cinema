@@ -9,6 +9,7 @@ const config = {
   transform: {
     '\\.[jt]sx?$': 'babel-jest',
   },
+  setupFilesAfterEnv: ['./setup-tests.js'],
   // All imported modules in your tests should be mocked automatically
   // automock: false,
 
