@@ -81,8 +81,13 @@
                 const container = document.createElement("div")
                 container.className = "poster-container"
 
+                const imgContainer = document.createElement("div")
+                imgContainer.className = "img-container"
+
                 const imgElement = createImag(movie)
-                container.appendChild(imgElement)
+
+                imgContainer.appendChild(imgElement)
+                container.appendChild(imgContainer)
 
                 const buttonElement = document.createElement("button")
                 buttonElement.textContent = "View"
