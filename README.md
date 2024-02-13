@@ -71,9 +71,9 @@ Currently, the Little Mermaid banner in the home page is not responsive. Make th
 
 The Cinemark logo seems to be broken. Please, make sure it renders.
 
-### 4. Add a unit testing for the `get_movies` function
+### 4. Add a unit testing for the `getMovies` function
 
-The function `get_movies` has no tests. Add the corresponding unit tests. Create a file called `get-movies.test.js` under the folder `test/`. There, add the testing cases you consider necessary for this function.
+The function `getMovies` has no tests. Add the corresponding unit tests. Create a file called `getMovies.test.js` under the folder `test/`. There, add the testing cases you consider necessary for this function.
 
 ### 5. Create a service to get a movie by id
 
