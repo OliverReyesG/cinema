@@ -6,8 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/global.css"/>
     <title>Document</title>
-    <script src="../javascript/getMovies.js" type="module"></script>
-    <script src="../javascript/constants.js" type="module"></script>
 </head>
 <body>
     <header>
@@ -36,8 +34,8 @@
     </header>
 
     <div class="banner">
-            <button class="more-information">More Information</button>
-        </div>
+        <button class="more-information">More Information</button>
+    </div>
 
     <div class="filter">
         <div class="city-filter">
@@ -58,42 +56,58 @@
         </div>
     </div>
 
-    <h1>Billboard</h1>
-    <div class="movie-list" id="movie-list">
+    <h1>One Hundred and One Dalmatians</h1>
+    <div class="movie-details" id="movie-details">
+        <img src="" alt="" id="movie-image">
+        <div class="movie-details-container">
+            <section class="movie-detail">
+                <h2 class="movie-detail-title">NAME</h2>
+                <h3 class="movie-detail-info" id="movie-name">N/A</h3>
+            </section>
+            <hr class="section-separator">
+            <section class="movie-detail">
+                <h2 class="movie-detail-title">GENERES</h2>
+                <h3 class="movie-detail-info" id="movie-generes">N/A</h3>
+            </section>
+            <hr class="section-separator">
+            <section class="movie-detail">
+                <h2 class="movie-detail-title">SINOPSIS</h2>
+                <h3 class="movie-detail-info" id="movie-sinopsis">N/A</h3>
+            </section>
+            <hr class="section-separator">
+            <section class="movie-detail">
+                <h2 class="movie-detail-title">DURATION</h2>
+                <h3 class="movie-detail-info" id="movie-duration">N/A</h3>
+            </section>
+        </div>
     </div>
 </body>
 <script type="module">
-    import { getMovies } from '../javascript/getMovies.js';
+    import { getMovie } from '../javascript/getMovie.js';
+    import { secondsToHHMM, getValueOrNA } from '../javascript/utils.js';
+    const data = await getMovie("tt0055254")
 
-    const createImag = (movie) => {
-        const imag = movie.primaryImage.url
-        const alternativeText = movie.primaryImage.caption.plainText
-        const imgElement = document.createElement("img");
-        imgElement.src = imag
-        imgElement.alt = alternativeText
-        return imgElement  
-    }
+    const movieImageUrl = data.primaryImage.url
+    const movieImageCaption = data.primaryImage.caption
+    const movieImageRef = document.getElementById("movie-image")
+    movieImageRef.setAttribute("src", movieImageUrl)
+    movieImageRef.setAttribute("alt", movieImageCaption)
 
+    const movieNameRef = document.getElementById("movie-name")
+    movieNameRef.textContent = getValueOrNA(data.originalTitleText.text)
 
-    getMovies()
-        .then((data) => {
-            data.map((movie) => {
-                const container = document.createElement("div")
-                container.className = "poster-container"
+    const movieGeneresRef = document.getElementById("movie-generes")
+    const movieGeneresList = data.genres.genres.map(genere => getValueOrNA(genere.text))
+    const movieGeneresText = movieGeneresList.join(", ")
+    movieGeneresRef.textContent = movieGeneresText
 
-                const imgElement = createImag(movie)
-                container.appendChild(imgElement)
-
-                const buttonElement = document.createElement("button")
-                buttonElement.textContent = "View"
-                buttonElement.className = "schedules"
-                buttonElement.setAttribute('data-movie-id', movie.id)
-                container.appendChild(buttonElement)
-
-                const element = document.getElementById("movie-list");
-                element.appendChild(container);
-            })
-        });
+    const movieSinopsisRef = document.getElementById("movie-sinopsis")
+    const movieSinopsis = data.plot.plotText.plainText
+    movieSinopsisRef.textContent = getValueOrNA(movieSinopsis)
+    
+    const movieDurationRef = document.getElementById("movie-duration")
+    const movieDuration = data.runtime.seconds
+    movieDurationRef.textContent = getValueOrNA(secondsToHHMM(movieDuration))
 </script>
 <footer>
     <div class="about-us">

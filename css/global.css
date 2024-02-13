@@ -1,3 +1,12 @@
+:root {
+    --default-gap: 80px;
+    --light-grey: #808080;
+}
+
+* {
+    box-sizing: border-box;
+}
+
 body {
     margin: 0;
 }
@@ -40,6 +49,11 @@ nav.options > h4 {
     font-size: x-small;
     font-weight: lighter;
     font-family: Arial;
+}
+
+nav.options > h3 > a {
+    text-decoration: none;
+    color: inherit;
 }
 
 button {
@@ -133,7 +147,7 @@ h1 {
     width: 100%;
     padding-left: 9%;
     font-size: xx-large;
-    color: #808080;
+    color: var(--light-grey);
     font-weight: lighter;
     font-family: Arial;
 }
@@ -165,6 +179,40 @@ div.movie-list div.poster-container button{
     width: 100%;
     background-color: darkred;
     border-color: darkred;
+}
+
+div.movie-details {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: var(--default-gap);
+    padding: 50px 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 50px;
+}
+
+.movie-details > img {
+    min-width: 350px;
+    max-width: 500px;
+}
+
+.movie-details > .movie-details-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: auto;
+    width: 700px;
+}
+
+.movie-details-container > .section-separator {
+    color: gray; border-style: dashed; border-width: 1px; margin: 0.5em auto;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.movie-detail > .movie-detail-info {
+    color: var(--light-grey);
 }
 
 
