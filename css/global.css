@@ -169,9 +169,17 @@ div.movie-list div.poster-container{
     height: auto;
 }
 
-div.movie-list div.poster-container img{
+div.movie-list div.poster-container > .img-container {
+    display: flex;
+    justify-content: center;
+    height: 450px;
     width: 100%;
-    height: auto;
+    overflow: hidden;
+}
+
+div.movie-list div.poster-container img{
+    height: 100%;
+    width: auto;
 }
 
 div.movie-list div.poster-container button{
