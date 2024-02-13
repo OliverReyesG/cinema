@@ -62,7 +62,7 @@
     </div>
 </body>
 <script type="module">
-    import { get_movies } from '../javascript/get-movies.js';
+    import { getMovies } from '../javascript/getMovies.js';
 
     const createImag = (movie) => {
         const imag = movie.primaryImage.url
@@ -74,7 +74,7 @@
     }
 
 
-    get_movies()
+    getMovies()
         .then((data) => {
             data.map((movie) => {
                 const container = document.createElement("div")
